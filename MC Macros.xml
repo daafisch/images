@@ -1,0 +1,69 @@
+<group name="MC Macros">
+   <macro name="Read Error State Motor Controller" icon="INFO">
+      <assert-service description="Ensure ROM3 Motor Controller" uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-characteristic description="Ensure Get Error Axis/Motor/Encoder" uuid="3b610005-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+         <assert-characteristic description="Ensure Get Temp Bridge/Shunt/Motor" uuid="3b610006-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+         <assert-characteristic description="Ensure Motor Current/Brake Current" uuid="3b610008-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+         <assert-characteristic description="Ensure Bus Voltage" uuid="3b610009-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <read description="Read value of Get Error Axis/Motor/Encoder" characteristic-uuid="3b610005-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0x000000000000" value="000000000000"/>
+      </read>
+      <read description="Read value of Get Temp Bridge/Shunt/Motor" characteristic-uuid="3b610006-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0x1B1A17" value="1B1A17"/>
+      </read>
+      <read description="Read value of Motor Current/Brake Current" characteristic-uuid="3b610008-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0x0200" value="0200"/>
+      </read>
+      <read description="Read value of Bus Voltage" characteristic-uuid="3b610009-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0xE900" value="E900"/>
+      </read>
+   </macro>
+   <macro name="Set Resistance to 100" icon="PLAY">
+      <assert-service description="Ensure ROM3 Motor Controller" uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-characteristic description="Ensure Resistance" uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="WRITE" requirement="MANDATORY"/>
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <write description="Write 0xE803 to Resistance" characteristic-uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a" value="E803" type="WRITE_REQUEST"/>
+      <sleep description="Sleep 2000 ms" timeout="2000"/>
+      <read description="Read value of Resistance" characteristic-uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0xE803" value="E803"/>
+      </read>
+   </macro>
+   <macro name="Set Resistance to 10" icon="PLAY">
+      <assert-service description="Ensure ROM3 Motor Controller" uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-characteristic description="Ensure Resistance" uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="WRITE" requirement="MANDATORY"/>
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <write description="Write 0x6400 to Resistance" characteristic-uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a" value="6400" type="WRITE_REQUEST"/>
+      <sleep description="Sleep 1000 ms" timeout="1000"/>
+      <read description="Read value of Resistance" characteristic-uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0x6400" value="6400"/>
+      </read>
+   </macro>
+   <macro name="Set Resistance to 0" icon="PLAY">
+      <assert-service description="Ensure ROM3 Motor Controller" uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-characteristic description="Ensure Resistance" uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a">
+            <property name="WRITE" requirement="MANDATORY"/>
+            <property name="READ" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <write description="Write 0x0000 to Resistance" characteristic-uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a" value="0000" type="WRITE_REQUEST"/>
+      <sleep description="Sleep 1000 ms" timeout="1000"/>
+      <read description="Read value of Resistance" characteristic-uuid="3b610003-fbfc-4b0b-8e41-1186c1abc99a" service-uuid="3b610000-fbfc-4b0b-8e41-1186c1abc99a">
+         <assert-value description="Assert value equals 0x0000" value="0000"/>
+      </read>
+   </macro>
+</group>
